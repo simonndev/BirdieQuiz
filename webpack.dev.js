@@ -24,7 +24,7 @@ const METADATA = webpackMerge(webpackCommonConfig({
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
-module.exports = function(options) {
+module.exports = (options) => {
   const webpackDevConfig = {
     /**
      * Developer tool to enhance debugging

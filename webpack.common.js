@@ -32,8 +32,8 @@ const METADATA = {
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
-module.exports = function(options) {
-  const idProd = options.env === 'production';
+module.exports = (options) => {
+  const isProd = options.env === 'production';
 
   const webpackCommonConfig = {
 
@@ -45,7 +45,7 @@ module.exports = function(options) {
      */
     entry: {
       'polyfills': './src/polyfills.ts',
-      'vendor': './src/vendor.ts',
+      // 'vendor': './src/vendor.ts',
       'main': './src/main.ts'
     },
 
@@ -97,13 +97,14 @@ module.exports = function(options) {
          */
         {
           test: /\.ts$/,
-          use: [{
-              loader: '@angularclass/hmr-loader',
-              options: {
-                pretty: !isProd,
-                prod: isProd
-              }
-            },
+          use: [
+            // {
+            //   loader: '@angularclass/hmr-loader',
+            //   options: {
+            //     pretty: !isProd,
+            //     prod: isProd
+            //   }
+            // },
             {
               /**
                *  MAKE SURE TO CHAIN VANILLA JS CODE, I.E. TS COMPILATION OUTPUT.
@@ -214,8 +215,8 @@ module.exports = function(options) {
        * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
        */
       new webpack.optimize.CommonsChunkPlugin({
-        name: ['vendor', 'polyfills'],
-        chunks: ['vendor', 'polyfills']
+        name: ['polyfills'],
+        chunks: ['polyfills']
       }),
 
       new CleanWebpackPlugin(
@@ -229,7 +230,7 @@ module.exports = function(options) {
         from: './src/images/*.*',
         to: 'assets/',
         flatten: true
-      }])
+      }]),
 
       new HtmlWebpackPlugin({
         filename: 'index.html',

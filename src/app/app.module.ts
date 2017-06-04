@@ -5,11 +5,14 @@ import { HttpModule } from '@angular/http';
 
 import { RouterModule, PreloadAllModules } from '@angular/router';
 
+import { ROUTES } from './app.routes';
+
+import { HomeComponent} from './home/home.component';
 import { AppComponent } from './app.component';
 
 @NgModule({
   bootstrap: [ AppComponent ],
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, HomeComponent ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -19,6 +22,6 @@ import { AppComponent } from './app.component';
 })
 export class AppModule {
   constructor(public appRef: ApplicationRef) {
-    
+
   }
 }
